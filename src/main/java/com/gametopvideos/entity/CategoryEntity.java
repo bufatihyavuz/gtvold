@@ -1,5 +1,7 @@
 package com.gametopvideos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -56,6 +58,7 @@ public class CategoryEntity {
         return result;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoryByCategoryId")
     public Collection<VideoEntity> getVideosById() {
         return videosById;

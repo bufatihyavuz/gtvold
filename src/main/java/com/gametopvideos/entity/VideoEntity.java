@@ -1,12 +1,14 @@
 package com.gametopvideos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "VIDEO", schema = "gametopvideos", catalog = "gtv")
 public class VideoEntity {
-    private int id;
+    private Integer id;
     private String title;
     private String url;
     private Integer view;
@@ -35,14 +37,14 @@ public class VideoEntity {
     }
 
     @Id
-    @GeneratedValue(generator = "video_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "video_generator")
     @SequenceGenerator(
             name = "video_generator",
             sequenceName = "video_sequence",
-            initialValue = 1000
+            initialValue = 100
     )
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -171,6 +173,7 @@ public class VideoEntity {
         this.categoryByCategoryId = categoryByCategoryId;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id",insertable = false,updatable = false)
     public UserEntity getUserByUserId() {

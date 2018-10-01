@@ -132,7 +132,6 @@ public class UserEntity {
         this.roleByRoleId = roleByRoleId;
     }
 
-    @JsonIgnore
     @OneToMany(mappedBy = "userByUserId")
     public Collection<VideoEntity> getVideosById() {
         return videosById;

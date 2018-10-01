@@ -1,5 +1,7 @@
 package com.gametopvideos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -96,6 +98,7 @@ public class ActionEntity {
         return result;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id",insertable = false,updatable = false)
     public UserEntity getUserByUserId() {
@@ -106,6 +109,7 @@ public class ActionEntity {
         this.userByUserId = userByUserId;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "video_id", referencedColumnName = "id",insertable = false,updatable = false)
     public VideoEntity getVideoByVideoId() {
@@ -116,6 +120,7 @@ public class ActionEntity {
         this.videoByVideoId = videoByVideoId;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "actiontype_id", referencedColumnName = "id",insertable = false,updatable = false)
     public ActiontypeEntity getActiontypeByActiontypeId() {

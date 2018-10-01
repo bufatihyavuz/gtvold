@@ -1,5 +1,7 @@
 package com.gametopvideos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -56,6 +58,7 @@ public class RoleEntity {
         return result;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "roleByRoleId")
     public Collection<UserEntity> getUsersById() {
         return usersById;

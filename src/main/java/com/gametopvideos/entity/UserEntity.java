@@ -1,13 +1,11 @@
 package com.gametopvideos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Collection;
 
 @Entity
-@Table(name = "USER", schema = "gametopvideos", catalog = "gtv")
+@Table(name = "user", schema = "gametopvideos", catalog = "gtv")
 public class UserEntity {
     private int id;
     private String name;
@@ -20,12 +18,7 @@ public class UserEntity {
     private Collection<VideoEntity> videosById;
 
     @Id
-    @GeneratedValue(generator = "user_generator")
-    @SequenceGenerator(
-            name = "user_generator",
-            sequenceName = "user_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -4,19 +4,14 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "ACTIONTYPE", schema = "gametopvideos", catalog = "gtv")
+@Table(name = "actiontype", schema = "gametopvideos", catalog = "gtv")
 public class ActiontypeEntity {
     private int id;
     private String name;
     private Collection<ActionEntity> actionsById;
 
     @Id
-    @GeneratedValue(generator = "actiontype_generator")
-    @SequenceGenerator(
-            name = "actiontype_generator",
-            sequenceName = "actiontype_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

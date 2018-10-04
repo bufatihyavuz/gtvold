@@ -6,9 +6,9 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "VIDEO", schema = "gametopvideos", catalog = "gtv")
+@Table(name = "video", schema = "gametopvideos", catalog = "gtv")
 public class VideoEntity {
-    private Integer id;
+    private int id;
     private String title;
     private String url;
     private Integer view;
@@ -20,31 +20,10 @@ public class VideoEntity {
     private CategoryEntity categoryByCategoryId;
     private UserEntity userByUserId;
 
-    public VideoEntity(){}
-
-    public VideoEntity(int id, String title, String url, Integer view, Integer duration, Integer size, Integer categoryId, Integer userId, Collection<ActionEntity> actionsById, CategoryEntity categoryByCategoryId, UserEntity userByUserId) {
-        this.id = id;
-        this.title = title;
-        this.url = url;
-        this.view = view;
-        this.duration = duration;
-        this.size = size;
-        this.categoryId = categoryId;
-        this.userId = userId;
-        this.actionsById = actionsById;
-        this.categoryByCategoryId = categoryByCategoryId;
-        this.userByUserId = userByUserId;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "video_generator")
-    @SequenceGenerator(
-            name = "video_generator",
-            sequenceName = "video_sequence",
-            initialValue = 100
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -53,7 +32,7 @@ public class VideoEntity {
     }
 
     @Basic
-    @Column(name = "title", nullable = true, length = 70)
+    @Column(name = "title", nullable = true, length = 100)
     public String getTitle() {
         return title;
     }

@@ -6,19 +6,14 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "CATEGORY", schema = "gametopvideos", catalog = "gtv")
+@Table(name = "category", schema = "gametopvideos", catalog = "gtv")
 public class CategoryEntity {
     private int id;
     private String name;
     private Collection<VideoEntity> videosById;
 
     @Id
-    @GeneratedValue(generator = "category_generator")
-    @SequenceGenerator(
-            name = "category_generator",
-            sequenceName = "category_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

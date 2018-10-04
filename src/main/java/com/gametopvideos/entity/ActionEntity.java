@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ACTION", schema = "gametopvideos", catalog = "gtv")
+@Table(name = "action", schema = "gametopvideos", catalog = "gtv")
 public class ActionEntity {
     private int id;
     private String active;
@@ -17,12 +17,7 @@ public class ActionEntity {
     private ActiontypeEntity actiontypeByActiontypeId;
 
     @Id
-    @GeneratedValue(generator = "action_generator")
-    @SequenceGenerator(
-            name = "action_generator",
-            sequenceName = "action_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

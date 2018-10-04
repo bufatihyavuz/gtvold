@@ -1,13 +1,12 @@
 package com.gametopvideos.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gametopvideos.entity.VideoEntity;
 import com.gametopvideos.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +32,10 @@ public class VideoController {
     }
 
     @PostMapping(value = "/videos")
-    public void addVideo(VideoEntity videoEntity){
+        public String addVideo(@RequestBody String json) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        VideoEntity videoEntity  = objectMapper.readValue(json, VideoEntity.class);
         videoService.save(videoEntity);
+        return "succes";
     }
 }

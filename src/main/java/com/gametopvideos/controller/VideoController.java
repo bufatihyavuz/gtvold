@@ -32,10 +32,17 @@ public class VideoController {
     }
 
     @PostMapping(value = "/videos")
-        public String addVideo(@RequestBody String json) throws IOException {
+    public String addVideo(@RequestBody String json) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         VideoEntity videoEntity  = objectMapper.readValue(json, VideoEntity.class);
         videoService.save(videoEntity);
         return "succes";
     }
+
+    @DeleteMapping(value = "/videos/{id}")
+    public String deleteVideo(@PathVariable Integer id){
+        videoService.deleteById(id);
+            return "success";
+        }
+
 }

@@ -4,9 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gametopvideos.entity.VideoEntity;
 import com.gametopvideos.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,14 @@ public class VideoController {
     @GetMapping(value = "/hello")
     public String HelloWorld(){
         return "GameTopVideos";
+    }
+
+    @GetMapping(value = "/helloJsp")
+    public ModelAndView deneme() {
+        ModelAndView modelAndView2 = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("date",new Date());
+        return modelAndView;
     }
 
     @GetMapping(value = "/videos")
@@ -44,5 +55,4 @@ public class VideoController {
         videoService.deleteById(id);
             return "success";
         }
-
 }

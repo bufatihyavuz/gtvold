@@ -3,8 +3,9 @@ package com.gametopvideos.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gametopvideos.entity.VideoEntity;
 import com.gametopvideos.service.VideoService;
+import com.gametopvideos.youtubeAPI.Quickstart;
+import com.gametopvideos.youtubeAPI.UploadVideo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,11 +27,28 @@ public class VideoController {
 
     @GetMapping(value = "/helloJsp")
     public ModelAndView deneme() {
-        ModelAndView modelAndView2 = new ModelAndView();
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("date",new Date());
+        modelAndView.addObject("videoName","Best Zed Plays");
         return modelAndView;
     }
+
+    @GetMapping(value = "/youtubeUpload")
+    public void youtubeUpload() {
+        UploadVideo uploadVideo = new UploadVideo();
+        uploadVideo.uplaod();
+    }
+
+    @GetMapping(value = "/youtubeViews")
+    public void youtubeViews() {
+        Quickstart quickstart = new Quickstart();
+        try {
+            quickstart.youtubeViews();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @GetMapping(value = "/videos")
     public List<VideoEntity> getAllVideos() {
